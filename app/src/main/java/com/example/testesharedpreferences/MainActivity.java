@@ -25,6 +25,10 @@ public class MainActivity extends AppCompatActivity implements TextView.OnEditor
         this.mViewHolder.entrada.setOnEditorActionListener(this);
         this.mViewHolder.saida = (TextView) findViewById(R.id.textview_out);
 
+        this.mViewHolder.entradaF = (EditText) findViewById(R.id.editText_inFloat);
+        this.mViewHolder.entradaF.setOnEditorActionListener(this);
+        this.mViewHolder.saidaF = (TextView) findViewById(R.id.textview_outFloat);
+
 
     }
 
@@ -35,9 +39,19 @@ public class MainActivity extends AppCompatActivity implements TextView.OnEditor
         if (id == R.id.editText_in) {
 
             String text = this.mViewHolder.entrada.getText().toString();
-           String text2  = this.mSecurityPreferences.getStoredString("teste");
+            String text2  = this.mSecurityPreferences.getStoredString("teste");
             this.mViewHolder.saida.setText("testado " + text + "anterior" + text2);
             this.mSecurityPreferences.storeString("teste", text);
+
+        }
+
+        if (id == R.id.editText_inFloat) {
+
+            String text = this.mViewHolder.entradaF.getText().toString();
+            float valorF = Float.parseFloat(text);
+            float text2  = this.mSecurityPreferences.getStoredFloat("testeF");
+            this.mViewHolder.saidaF.setText("testado " + text + "anterior" + text2);
+            this.mSecurityPreferences.storeFloat("testeF", valorF);
 
         }
 
@@ -49,6 +63,9 @@ public class MainActivity extends AppCompatActivity implements TextView.OnEditor
     private static class ViewHolder {
         EditText entrada;
         TextView saida;
+
+        EditText entradaF;
+        TextView saidaF;
     }
 
 
